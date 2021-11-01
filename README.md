@@ -1,2 +1,6 @@
 # CRM API
-CRM backend API based on Node and Express
+CRM backend API:
+  ## Tech Stack
+ * Node.js
+ * Express
+ * MongoDB
