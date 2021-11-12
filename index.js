@@ -1,11 +1,22 @@
 import bodyParser from "body-parser";
 import express from "express";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import routes from "./src/routes/crmRoutes";
 
 const app = express();
 const PORT = 4000;
+
+// Helmet header protection
+app.use(helmet());
+
+//rate limit setup to prevent DoS
+const limiter = new rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 min
+    max: 100 // limit of number of request per IP
+});
 
 //mongoose connection
 mongoose.Promise = global.Promise;
